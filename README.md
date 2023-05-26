@@ -32,9 +32,9 @@ Assurez-vous d'avoir les droits administratifs nécessaires pour exécuter les t
 
 ## Structure du projet
 
-- Le répertoire `ansible` contient les fichiers nécessaires pour automatiser la configuration des Virtual Hosts.
+- Le répertoire `Files` contient les fichiers nécessaires pour automatiser la configuration des Virtual Hosts.
 - Le fichier `playbook.yml` définit les tâches Ansible pour installer Apache et créer les Virtual Hosts.
-- Le répertoire `files` contient les fichiers de configuration Apache pour chaque Virtual Host.
+- Le répertoire `www.hei.school.conf` contient les fichiers de configuration Apache pour chaque Virtual Host.
 
 ## Auteurs
 
