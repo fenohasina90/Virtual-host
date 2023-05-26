@@ -17,11 +17,11 @@ Suivez les étapes ci-dessous pour configurer l'environnement et exécuter le sc
 
 2. Clonez ce dépôt GitHub sur votre machine locale :
 
-3. Accédez au répertoire cloné :
+3. Accédez au répertoire cloné
 
 4. Configurez les Virtual Hosts :
 
-- Ouvrez le fichier `files/www.HEI.school.conf` dans un éditeur de texte.
+- Ouvrez le fichier `files/www.hei.school.conf` dans un éditeur de texte.
 - Modifiez les directives de configuration selon vos besoins, en ajoutant les paramètres spécifiques à votre Virtual Host.
 
 5. Exécutez le script Ansible pour créer les Virtual Hosts :

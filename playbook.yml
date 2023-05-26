@@ -1,0 +1,66 @@
+
+- name: Install Apache and configure Virtual Hosts
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+        update_cache: true
+
+    - name: Enable Apache modules
+      apache2_module:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - rewrite
+        - ssl
+      notify:
+        - Reload Apache
+
+    - name: Create Virtual Hosts
+      template:
+        src: www.hei.school.conf
+        dest: /etc/apache2/sites-available/www.hei.school.conf
+        owner: root
+        group: root
+        mode: '0644'
+      notify:
+        - Reload Apache
+
+    - name: Enable Virtual Hosts
+      apache2_module:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - www.hei.school
+      notify:
+        - Reload Apache
+
+    - name: Disable default Virtual Host
+      file:
+        path: /etc/apache2/sites-enabled/000-default.conf
+        state: absent
+      notify:
+        - Reload Apache
+
+    - name: Ensure Apache is running and enabled
+      service:
+        name: apache2
+        state: started
+        enabled: true
+
+    - name: Set up firewall rules
+      ufw:
+        rule: allow
+        port: "{{ item }}"
+      with_items:
+        - 80
+        - 443
+
+  handlers:
+    - name: Reload Apache
+      service:
+        name: apache2
+        state: reloaded
